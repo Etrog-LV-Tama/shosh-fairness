@@ -82,6 +82,8 @@
   .how { font-size:13.5px; color:#475569; line-height:1.65; font-weight:500; }
   .how b { color:#0f172a; }
   .updated { text-align:center; font-size:12px; color:#94a3b8; margin-top:4px; font-weight:500; }
+  .dapa-choice { border:0; min-height:44px; cursor:pointer; font-family:inherit; background:#f1f5f9; color:#64748b; }
+  .dapa-choice[aria-pressed="true"] { background:#ede9fe; color:#6d28d9; }
 </style>
 </head>
 <body>
@@ -90,6 +92,11 @@
   <header class="card">
     <h1>טבלת הצדק של התורנויות</h1>
     <div class="sub">מחזור ל״ו · מי עשה, מי משובץ, וכמה יוצא לכל אחד</div>
+    <div class="legend" role="group" aria-label="בחירת דפא">
+      <button class="chip dapa-choice" type="button" id="dapa1" aria-pressed="true">דפ"א 1</button>
+      <button class="chip dapa-choice" type="button" id="dapa2" aria-pressed="false">דפ"א 2</button>
+    </div>
+    <div class="sub" id="scenario-note">דפ"א 1 · חמשוש ושבת חינוך נשארים ללא שיבוץ</div>
   </header>
 
   <section class="card">
@@ -144,6 +151,17 @@
     return end ? end < today : entry.past === true || entry.type === "past";
   };
   let renderedDate;
+  let activeEvents = EVENTS;
+  function selectScenario(second) {
+    activeEvents = second ? EVENTS_DAPA2 : EVENTS;
+    document.getElementById("dapa1").setAttribute("aria-pressed", String(!second));
+    document.getElementById("dapa2").setAttribute("aria-pressed", String(second));
+    document.getElementById("scenario-note").textContent = second ? 'דפ"א 2 · ב-1/1 וב-8/1 שוש עם שני מפקדים' : 'דפ"א 1 · חמשוש ושבת חינוך נשארים ללא שיבוץ';
+    renderedDate = undefined;
+    render();
+  }
+  document.getElementById("dapa1").addEventListener("click", () => selectScenario(false));
+  document.getElementById("dapa2").addEventListener("click", () => selectScenario(true));
   function render() {
   const today = israelDate();
   if (today === renderedDate) return;
@@ -153,7 +171,7 @@
   const stats = {};
   for (const n of Object.keys(COMMANDERS)) stats[n] = { past:0, future:0, spast:0, sfuture:0 };
   const groups = {};
-  for (const e of EVENTS) {
+  for (const e of activeEvents) {
     if (e.type !== "past" && e.type !== "duty") continue;
     for (const n of e.who) {
       if (!stats[n]) continue;
@@ -186,7 +204,7 @@
   }).join("");
 
   // --- schedule ---
-  document.getElementById("sched").innerHTML = EVENTS.map(e => {
+  document.getElementById("sched").innerHTML = activeEvents.map(e => {
     let body = "";
     if (e.type === "duty" || e.type === "past") body = e.who.map(chip).join("");
     else if (e.type === "all") body = `<span class="all-pill">כולם נשארים</span>`;
