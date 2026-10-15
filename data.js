@@ -5,7 +5,7 @@
    ============================================================ */
 
 
-const UPDATED_AT = "15 באוקטובר 2026, 11:30";
+const UPDATED_AT = "15 באוקטובר 2026, 11:36";
 
 
 // צבע קבוע לכל מפקד/ת
@@ -60,6 +60,6 @@ const SAMALTO = [
 // דפ"א 2: החמשוש נשאר ללא שיבוץ, ושבת החינוך הופכת לשוש.
 const EVENTS_DAPA2 = EVENTS.map(e => {
   if (e.date === "4/12") return {...e, who: ["בת חן", "רון"]};
-  if (e.date === "8/1") return {...e, type: "duty", who: ["בת חן", "עמית"], note: "שוש"};
+  if (e.date === "8/1") return {...e, type: "duty", who: ["בת חן", "יואב"], note: "שוש"};
   return {...e, who: [...e.who]};
 });
