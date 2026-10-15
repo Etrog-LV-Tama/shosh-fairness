@@ -5,7 +5,7 @@
    ============================================================ */
 
 
-const UPDATED_AT = "15 באוקטובר 2026, 11:36";
+const UPDATED_AT = "15 באוקטובר 2026, 11:59";
 
 
 // צבע קבוע לכל מפקד/ת
@@ -43,6 +43,7 @@ const EVENTS = [
 // שיבוצי סמלתו (סמל תורן) - הרשימה של אופק מ-23.9 + ההחלפה בת חן/אירוס (בת חן ב-20/10, אירוס ב-25/10)
 const POSTS = { "א׳": "#2E86DE", "ב׳": "#27AE60", "ג׳": "#E67E22" };
 const SAMALTO = [
+  { date: "14/9", day: "יום ב׳", who: ["יואב"], past: true },
   { date: "17/9", day: "יום ה׳", who: ["טל"], past: true },
   { date: "05/10", day: "יום ב׳", who: ["מאור"], post: "ג׳", past: true },
   { date: "07/10", day: "יום ד׳", who: ["רון"], post: "א׳", past: true },
@@ -60,6 +61,6 @@ const SAMALTO = [
 // דפ"א 2: החמשוש נשאר ללא שיבוץ, ושבת החינוך הופכת לשוש.
 const EVENTS_DAPA2 = EVENTS.map(e => {
   if (e.date === "4/12") return {...e, who: ["בת חן", "רון"]};
-  if (e.date === "8/1") return {...e, type: "duty", who: ["בת חן", "יואב"], note: "שוש"};
+  if (e.date === "8/1") return {...e, type: "duty", who: ["בת חן", "דפנה"], note: "שוש"};
   return {...e, who: [...e.who]};
 });
