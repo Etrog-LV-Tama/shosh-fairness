@@ -122,7 +122,7 @@
   <div class="updated" id="upd"></div>
 </div>
 
-<script src="data.js?v=20261015-0124"></script>
+<script src="data.js?v=20261015-1130"></script>
 <script>
 (function(){
   const chip = n => {
@@ -156,7 +156,7 @@
     activeEvents = second ? EVENTS_DAPA2 : EVENTS;
     document.getElementById("dapa1").setAttribute("aria-pressed", String(!second));
     document.getElementById("dapa2").setAttribute("aria-pressed", String(second));
-    document.getElementById("scenario-note").textContent = second ? 'דפ"א 2 · ב-1/1 וב-8/1 שוש עם שני מפקדים' : 'דפ"א 1 · חמשוש ושבת חינוך נשארים ללא שיבוץ';
+    document.getElementById("scenario-note").textContent = second ? 'דפ"א 2 · ב-1/1 חמשוש ללא שיבוץ, ב-8/1 שוש עם שני מפקדים' : 'דפ"א 1 · חמשוש ושבת חינוך נשארים ללא שיבוץ';
     renderedDate = undefined;
     render();
   }
