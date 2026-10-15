@@ -187,7 +187,8 @@
   for (const s of SAMALTO) {
     for (const n of s.who) {
       if (!stats[n]) continue;
-      if (isPast(s, today)) stats[n].spast++; else stats[n].sfuture++;
+      const w = (/שישי/.test(s.day) && /שבת/.test(s.day)) ? 2 : 1;
+      if (isPast(s, today)) stats[n].spast += w; else stats[n].sfuture += w;
     }
   }
   const rows = Object.entries(stats)
@@ -223,7 +224,7 @@
       const p = s.posts ? s.posts[i] : s.post;
       return chip(n) + (p ? `<span class="sml-post" style="background:${POSTS[p]}">סמלתו ${p}</span>` : "");
     }).join("");
-    return `<div class="erow${isPast(s, today) ? " past" : ""}"><div class="date"><b>${s.date}</b><span>${s.day}</span></div><div class="who">${people}${s.note ? `<div class="note">${s.note}</div>` : ""}</div></div>`;
+    return `<div class="erow${isPast(s, today) ? " past" : ""}"><div class="date"><b>${s.date}</b><span>${s.day}</span></div><div class="who">${people}${s.note ? `<div class="note">${s.note}</div>` : ""}${(/שישי/.test(s.day) && /שבת/.test(s.day)) ? `<div class="note">סופ״ש (שישי + שבת) · נספר כ-2 סמלתו לכל אחד</div>` : ""}</div></div>`;
   }).join("");
 
   document.getElementById("upd").textContent = "עודכן לאחרונה: " + UPDATED_AT;
