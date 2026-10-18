@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>תורנויות · טבלת צדק</title>
+<title>טבלת צדק</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=5">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=5">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=5">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,6 +21,16 @@
     padding: calc(20px + env(safe-area-inset-top)) 14px calc(34px + env(safe-area-inset-bottom));
   }
   .wrap { max-width:480px; margin:0 auto; }
+  .logo-link { display:inline-flex; align-items:center; justify-content:center; width:76px; height:76px;
+               border-radius:50%; margin-bottom:14px; text-decoration:none;
+               background: rgba(255,255,255,.55);
+               backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+               border: 1px solid rgba(255,255,255,.85);
+               box-shadow: 0 8px 22px rgba(100,116,180,.16);
+               transition: transform .18s ease, box-shadow .18s ease; }
+  .logo-link:hover { box-shadow: 0 10px 26px rgba(100,116,180,.22); }
+  .logo-link:active { transform: scale(.93); }
+  .logo-link img { width:62px; height:62px; object-fit:contain; display:block; }
   .card {
     background: rgba(255,255,255,.62);
     backdrop-filter: blur(18px);
@@ -90,7 +103,10 @@
 <div class="wrap">
 
   <header class="card">
-    <h1>טבלת הצדק של התורנויות</h1>
+    <a class="logo-link" href="https://etrog-lv-tama.github.io/" aria-label="סמל קורס אתרוג ל״ו · לדף הבית של המגמה">
+      <img src="logo.png?v=5" alt="סמל קורס אתרוג ל״ו">
+    </a>
+    <h1>טבלת צדק</h1>
     <div class="sub">מחזור ל״ו · מי עשה, מי משובץ, וכמה יוצא לכל אחד</div>
     <div class="legend" role="group" aria-label="בחירת דפא">
       <button class="chip dapa-choice" type="button" id="dapa1" aria-pressed="true">דפ"א 1</button>
